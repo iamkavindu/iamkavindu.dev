@@ -19,7 +19,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
 
   return (
     <div 
-      className={`${className} rounded-full bg-default-200 border-4 border-default-800 overflow-hidden flex items-center justify-center relative`}
+      className={`${className} rounded-full bg-default-200 border-4 border-default-800 overflow-hidden flex items-center justify-center relative ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300`}
       role="img"
       aria-label={alt}
       itemScope

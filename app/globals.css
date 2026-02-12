@@ -8,9 +8,31 @@
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Light Neon Green Accent Colors */
+  --color-neon-green-50: oklch(0.97 0.01 150);
+  --color-neon-green-100: oklch(0.93 0.03 150);
+  --color-neon-green-200: oklch(0.87 0.06 150);
+  --color-neon-green-300: oklch(0.78 0.10 150);
+  --color-neon-green-400: oklch(0.70 0.14 150);
+  --color-neon-green-500: oklch(0.65 0.18 150);
+  --color-neon-green-600: oklch(0.55 0.15 150);
+  --color-neon-green-700: oklch(0.45 0.12 150);
+  --color-neon-green-800: oklch(0.35 0.09 150);
+  --color-neon-green-900: oklch(0.25 0.06 150);
+  
+  /* Primary color mapped to neon green */
+  --color-primary: var(--color-neon-green-500);
+  --color-primary-foreground: oklch(0.15 0.02 150);
 }
 
 /* Smooth scroll for section navigation */
 html {
   scroll-behavior: smooth;
+}
+
+/* Enhanced focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
