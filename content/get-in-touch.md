@@ -4,9 +4,9 @@ I'm always open to connecting with fellow developers, discussing new opportuniti
 
 ## How to Reach Me
 
-- **Email**: [hello@iamkavindu.dev](mailto:hello@iamkavindu.dev)
-- **LinkedIn**: [linkedin.com/in/kavindu-perera](https://linkedin.com/in/kavindu-perera)
-- **GitHub**: [github.com/kavindu-perera](https://github.com/kavindu-perera)
+- **Email**: [kavinduperera2010@gmail.com](mailto:kavinduperera2010@gmail.com)
+- **LinkedIn**: [linkedin.com/in/iamkavindu](https://linkedin.com/in/iamkavindu)
+- **GitHub**: [github.com/iamkavindu](https://github.com/iamkavindu)
 
 ## Let's Collaborate
 
