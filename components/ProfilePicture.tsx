@@ -19,7 +19,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
 
   return (
     <div 
-      className={`${className} rounded-full bg-slate-200 border-4 border-slate-800 overflow-hidden flex items-center justify-center relative`}
+      className={`${className} rounded-full bg-default-200 border-4 border-default-800 overflow-hidden flex items-center justify-center relative`}
       role="img"
       aria-label={alt}
       itemScope
@@ -28,8 +28,8 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
       {src && !imageError ? (
         <>
           {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-slate-200">
-              <div className="w-8 h-8 border-4 border-slate-400 border-t-slate-800 rounded-full animate-spin"></div>
+            <div className="absolute inset-0 flex items-center justify-center bg-default-200">
+              <div className="w-8 h-8 border-4 border-default-400 border-t-default-800 rounded-full animate-spin"></div>
             </div>
           )}
           <Image 
@@ -50,7 +50,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
         </>
       ) : (
         <svg 
-          className="w-24 h-24 text-slate-400" 
+          className="w-24 h-24 text-default-400" 
           fill="currentColor"
           viewBox="0 0 24 24" 
           xmlns="http://www.w3.org/2000/svg"

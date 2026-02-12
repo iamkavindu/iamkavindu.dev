@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Providers } from "./providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
     images: ['/profilepicture.png'],
   },
   verification: {
-    google: 'add-your-google-site-verification-here', // You'll need to add this later
+    google: 'add-your-google-site-verification-here',
   },
   alternates: {
     canonical: 'https://iamkavindu.dev',
@@ -79,19 +80,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta
           httpEquiv="Content-Security-Policy"
-          content={`default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self';`.replace(/\s+/g, ' ').trim()}
+          content={`default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; form-action 'self'; base-uri 'self';`.replace(/\s+/g, ' ').trim()}
         />
         <meta
           httpEquiv="X-Content-Type-Options"
           content="nosniff"
-        />
-        <meta
-          httpEquiv="X-Frame-Options"
-          content="DENY"
         />
         <meta
           httpEquiv="Permissions-Policy"
@@ -108,7 +105,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
