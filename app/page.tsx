@@ -3,7 +3,6 @@ import LinkedInIcon from "@/components/icons/LinkedInIcon";
 import GitHubIcon from "@/components/icons/GitHubIcon";
 import MediumIcon from "@/components/icons/MediumIcon";
 import ProfilePicture from "@/components/ProfilePicture";
-import VisitorCounter from "@/components/VisitorCounter";
 
 export default function Home() {
   const socialLinks = getSocialLinks();
@@ -52,9 +51,6 @@ export default function Home() {
           className="w-48 h-48 md:w-64 md:h-64 shadow-lg"
         />
       </div>
-      
-      {/* Visitor Counter will only show when the feature flag is enabled */}
-      <VisitorCounter />
     </main>
   );
 }

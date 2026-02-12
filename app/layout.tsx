@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { LaunchDarklyProvider } from "../components/LaunchDarklyProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,7 +83,7 @@ export default function RootLayout({
       <head>
         <meta
           httpEquiv="Content-Security-Policy"
-          content={`default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' *.launchdarkly.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self';`.replace(/\s+/g, ' ').trim()}
+          content={`default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self';`.replace(/\s+/g, ' ').trim()}
         />
         <meta
           httpEquiv="X-Content-Type-Options"
@@ -109,9 +108,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LaunchDarklyProvider>
-          {children}
-        </LaunchDarklyProvider>
+        {children}
       </body>
     </html>
   );

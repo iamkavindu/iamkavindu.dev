@@ -27,9 +27,6 @@ const nextConfig: NextConfig = {
   },
   trailingSlash: true,
   reactStrictMode: true,
-  env: {
-    NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_ID: process.env.NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_ID,
-  },
 };
 
 export default nextConfig;

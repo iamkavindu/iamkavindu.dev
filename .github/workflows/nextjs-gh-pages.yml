@@ -46,7 +46,6 @@ jobs:
       - name: Build with Next.js
         env:
           NODE_ENV: production
-          NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_ID }}
         run: npm run build
 
       - name: Upload artifact
