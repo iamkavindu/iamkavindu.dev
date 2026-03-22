@@ -97,7 +97,7 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <p className="text-default-500">No blog posts yet. Stay tuned!</p>
+              <p className="text-default-500">No content available</p>
             )}
           </div>
         </section>

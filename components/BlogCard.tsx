@@ -14,10 +14,9 @@ export default function BlogCard({ post }: BlogCardProps) {
   });
 
   return (
-    <Link href={`/blog/${post.slug}/`}>
+    <Link href={`/blog/${post.slug}/`} className="block w-full">
       <Card
-        isPressable
-        className="w-full hover:shadow-lg transition-all duration-300 hover:border-l-4 hover:border-l-primary"
+        className="w-full h-full hover:shadow-lg transition-all duration-300 hover:border-l-4 hover:border-l-primary"
       >
         <CardHeader className="flex-col items-start gap-1 pb-0">
           <h2 className="text-xl font-semibold">{post.title}</h2>

@@ -3,6 +3,7 @@ title: "Understanding Event-Driven Architecture"
 date: "2026-02-01"
 description: "Exploring the fundamentals of event-driven architecture, its benefits, and when to use it in modern distributed systems."
 slug: "understanding-event-driven-architecture"
+draft: true
 ---
 
 # Understanding Event-Driven Architecture

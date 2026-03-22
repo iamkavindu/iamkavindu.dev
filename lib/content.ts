@@ -10,6 +10,7 @@ export interface BlogPostMeta {
   date: string;
   description: string;
   slug: string;
+  draft?: boolean;
 }
 
 export interface BlogPost extends BlogPostMeta {
@@ -42,19 +43,22 @@ export function getAllBlogPosts(): BlogPost[] {
 
   const files = fs.readdirSync(blogsDir).filter((f) => f.endsWith(".md"));
 
-  const posts = files.map((filename) => {
-    const filePath = path.join(blogsDir, filename);
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    const { data, content } = matter(fileContent);
+  const posts = files
+    .map((filename) => {
+      const filePath = path.join(blogsDir, filename);
+      const fileContent = fs.readFileSync(filePath, "utf-8");
+      const { data, content } = matter(fileContent);
 
-    return {
-      title: data.title ?? "Untitled",
-      date: data.date ?? "",
-      description: data.description ?? "",
-      slug: data.slug ?? filename.replace(/\.md$/, ""),
-      content,
-    } satisfies BlogPost;
-  });
+      return {
+        title: data.title ?? "Untitled",
+        date: data.date ?? "",
+        description: data.description ?? "",
+        slug: data.slug ?? filename.replace(/\.md$/, ""),
+        draft: data.draft === true,
+        content,
+      } satisfies BlogPost;
+    })
+    .filter((post) => !post.draft);
 
   return posts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -77,12 +81,13 @@ export function getBlogPost(slug: string): BlogPost | null {
     const { data, content } = matter(fileContent);
     const postSlug = data.slug ?? filename.replace(/\.md$/, "");
 
-    if (postSlug === slug) {
+    if (postSlug === slug && data.draft !== true) {
       return {
         title: data.title ?? "Untitled",
         date: data.date ?? "",
         description: data.description ?? "",
         slug: postSlug,
+        draft: false,
         content,
       };
     }
