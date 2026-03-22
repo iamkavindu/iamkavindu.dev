@@ -1,4 +1,6 @@
+
 # iamkavindu.dev
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f739986f-03be-4747-adfd-5a25c40b60c1/deploy-status)](https://app.netlify.com/projects/iamkavindu/deploys)
 
 My personal portfolio website built with Next.js and Typescript showcasing my work as a Backend Software Engineer specializing in Java and Spring Boot technologies.
 
