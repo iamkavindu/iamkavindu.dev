@@ -98,7 +98,7 @@ export default function RootLayout({
             script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cloud.umami.is;
             style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
             font-src 'self' https://fonts.gstatic.com;
-            connect-src 'self' https://cloud.umami.is https://fonts.googleapis.com https://fonts.gstatic.com;
+            connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev https://fonts.googleapis.com https://fonts.gstatic.com;
             form-action 'self';
             base-uri 'self';
           `.replace(/\s+/g, ' ').trim()}
