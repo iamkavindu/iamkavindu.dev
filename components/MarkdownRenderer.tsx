@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
@@ -53,13 +54,13 @@ const components: Components = {
     return <p className="mb-4 leading-relaxed">{children}</p>;
   },
   ul({ children }) {
-    return <ul className="list-disc list-inside mb-4 space-y-1">{children}</ul>;
+    return <ul className="list-disc mb-4 space-y-2 pl-6 marker:text-primary">{children}</ul>;
   },
   ol({ children }) {
-    return <ol className="list-decimal list-inside mb-4 space-y-1">{children}</ol>;
+    return <ol className="list-decimal mb-4 space-y-2 pl-6 marker:text-primary">{children}</ol>;
   },
   li({ children }) {
-    return <li className="leading-relaxed">{children}</li>;
+    return <li className="leading-relaxed pl-1">{children}</li>;
   },
   a({ href, children }) {
     return (
@@ -75,14 +76,26 @@ const components: Components = {
   },
   blockquote({ children }) {
     return (
-      <blockquote className="border-l-4 border-primary pl-4 my-4 italic text-default-600">
+      <blockquote className="border-l-4 border-primary pl-4 my-4 italic text-default-600 bg-default-50 py-2 pr-4 rounded-r-lg">
         {children}
       </blockquote>
     );
   },
   pre({ children }) {
+    let isMermaid = false;
+    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const childrenArray = React.Children.toArray(children) as any[];
+    if (childrenArray.length === 1 && childrenArray[0]?.props?.className?.includes('language-mermaid')) {
+      isMermaid = true;
+    }
+    
+    if (isMermaid) {
+      return <div className="mermaid-wrapper">{children}</div>;
+    }
+
     return (
-      <pre className="bg-default-100 rounded-lg p-4 overflow-x-auto mb-4 text-sm">
+      <pre className="bg-default-100 rounded-lg p-4 overflow-x-auto mb-4 text-sm font-mono border border-default-200">
         {children}
       </pre>
     );

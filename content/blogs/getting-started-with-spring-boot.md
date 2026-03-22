@@ -3,6 +3,7 @@ title: "Getting Started with Spring Boot Microservices"
 date: "2026-02-10"
 description: "A comprehensive guide to building your first microservice with Spring Boot, covering project setup, REST APIs, and best practices."
 slug: "getting-started-with-spring-boot"
+draft: true
 ---
 
 # Getting Started with Spring Boot Microservices

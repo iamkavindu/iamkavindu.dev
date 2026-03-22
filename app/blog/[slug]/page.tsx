@@ -1,7 +1,6 @@
 import { getAllBlogPosts, getBlogPost } from "@/lib/content";
 import Header from "@/components/Header";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
-import { Button } from "@heroui/react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -61,14 +60,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <main className="min-h-screen py-16 px-4">
         <article className="max-w-3xl mx-auto">
           <div className="mb-8">
-            <Link href="/#blogs">
-              <Button
-                variant="light"
-                startContent={<ArrowLeft size={16} />}
-                className="mb-4 -ml-2"
-              >
-                Back to Blogs
-              </Button>
+            <Link
+              href="/#blogs"
+              className="inline-flex items-center gap-2 mb-4 -ml-2 px-3 py-2 text-sm font-medium rounded-lg hover:bg-default-100 text-default-600 transition-colors"
+            >
+              <ArrowLeft size={16} />
+              Back to Blogs
             </Link>
 
             <h1 className="text-4xl font-bold mb-2">{post.title}</h1>
