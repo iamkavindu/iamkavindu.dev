@@ -4,6 +4,7 @@ import { Providers } from "./providers";
 import "highlight.js/styles/github-dark.css";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,12 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://iamkavindu.dev'),
+  metadataBase: new URL("https://iamkavindu.dev"),
   title: {
     default: "Kavindu Perera | Software Engineer",
-    template: "%s | Kavindu Perera"
+    template: "%s | Kavindu Perera",
   },
-  description: "Software Engineer specializing in Java, Spring Boot, and microservices architecture. Experienced in building scalable backend solutions, currently at Wiley.",
+  description:
+    "Software Engineer specializing in Java, Spring Boot, and microservices architecture. Experienced in building scalable backend solutions, currently at Wiley.",
   keywords: [
     "Kavindu Perera",
     "Software Engineer",
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     "Cloud Computing",
     "API Development",
     "Sri Lanka",
-    "Wiley"
+    "Wiley",
   ],
   authors: [{ name: "Kavindu Perera", url: "https://iamkavindu.dev" }],
   robots: {
@@ -45,34 +47,38 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   openGraph: {
     type: "website",
     url: "https://iamkavindu.dev",
     title: "Kavindu Perera | Backend Software Engineer",
-    description: "Backend Software Engineer specializing in Java, Spring Boot, and microservices architecture. Experienced in building scalable backend solutions.",
+    description:
+      "Backend Software Engineer specializing in Java, Spring Boot, and microservices architecture. Experienced in building scalable backend solutions.",
     siteName: "Kavindu Perera's Portfolio",
-    images: [{
-      url: "/profilepicture.png",
-      width: 256,
-      height: 256,
-      alt: "Kavindu Perera"
-    }],
+    images: [
+      {
+        url: "/profilepicture.png",
+        width: 256,
+        height: 256,
+        alt: "Kavindu Perera",
+      },
+    ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: "Kavindu Perera | Backend Software Engineer",
-    description: "Backend Software Engineer specializing in Java and Spring Boot, building scalable microservices.",
-    images: ['/profilepicture.png'],
+    description:
+      "Backend Software Engineer specializing in Java and Spring Boot, building scalable microservices.",
+    images: ["/profilepicture.png"],
   },
   verification: {
-    google: 'add-your-google-site-verification-here',
+    google: "add-your-google-site-verification-here",
   },
   alternates: {
-    canonical: 'https://iamkavindu.dev',
+    canonical: "https://iamkavindu.dev",
   },
 };
 
@@ -86,20 +92,20 @@ export default function RootLayout({
       <head>
         <meta
           httpEquiv="Content-Security-Policy"
-          content={`default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; form-action 'self'; base-uri 'self';`.replace(/\s+/g, ' ').trim()}
+          content={`
+            default-src 'self';
+            img-src 'self' data: https:;
+            script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cloud.umami.is;
+            style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+            font-src 'self' https://fonts.gstatic.com;
+            connect-src 'self' https://cloud.umami.is https://fonts.googleapis.com https://fonts.gstatic.com;
+            form-action 'self';
+            base-uri 'self';
+          `.replace(/\s+/g, ' ').trim()}
         />
-        <meta
-          httpEquiv="X-Content-Type-Options"
-          content="nosniff"
-        />
-        <meta
-          httpEquiv="Permissions-Policy"
-          content="camera=(), microphone=(), geolocation=()"
-        />
-        <meta
-          name="referrer"
-          content="strict-origin-when-cross-origin"
-        />
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta httpEquiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
@@ -111,6 +117,11 @@ export default function RootLayout({
           {children}
           <ScrollToTop />
         </Providers>
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
