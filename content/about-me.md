@@ -1,6 +1,6 @@
 # About Me
 
-I'm a passionate Software Engineer with a strong focus on backend development. Currently working at **Wiley**, I specialize in building robust, scalable solutions using **Java** and **Spring Boot**.
+I'm a passionate Software Engineer with a strong focus on backend development. I specialize in building robust, scalable solutions using **Java** and **Spring Boot**.
 
 ## What I Do
 
@@ -13,4 +13,4 @@ I'm a passionate Software Engineer with a strong focus on backend development. C
 
 My journey in software engineering has been driven by a curiosity for understanding how systems work at scale. From writing my first lines of Java to architecting distributed systems, every step has deepened my appreciation for elegant, maintainable software.
 
-When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or writing about software engineering on my blog.
+When I'm not ~~coding~~, (most of the time I'll be coding ☺️), you'll find me exploring new technologies, contributing to open-source projects, or writing about software engineering on my blog.
