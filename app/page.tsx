@@ -31,10 +31,10 @@ export default function Home() {
                 I am <span className="font-bold">Kavindu Perera</span>.
               </h1>
               <p className="text-default-600 text-lg leading-relaxed">
-                I am currently a Software Engineer at Wiley, specializing in
-                backend development with Java and Spring Boot. I build robust,
-                scalable backend solutions with a focus on microservices
+                I build robust, scalable backend solutions with a focus on microservices
                 architecture and cloud technologies.
+                <br/>
+                Come, hang out with me in my corner of the world..!!!
               </p>
 
               <div className="flex justify-center md:justify-start space-x-6">
