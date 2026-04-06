@@ -3,6 +3,7 @@ title: "Bridging the Gap: Generating TypeScript from Java Records with Java-TS-G
 date: "2026-04-06"
 description: "A practical guide to keeping your frontend and backend types in sync using Java-TS-Gen, a zero-overhead Maven plugin for Java records."
 slug: "generating-typescript-from-java-records"
+heroImage: "/images/blogs/java-ts-gen/hero.jpg"
 draft: false
 ---
 

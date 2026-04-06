@@ -1,7 +1,8 @@
-import { getAllBlogPosts, getBlogPost } from "@/lib/content";
+import { getAllBlogPosts, getBlogPost, DEFAULT_BLOG_HERO_IMAGE } from "@/lib/content";
 import Header from "@/components/Header";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -72,6 +73,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <time className="text-default-400" dateTime={post.date}>
               {formattedDate}
             </time>
+          </div>
+
+          <div
+            className="relative w-full mb-8 rounded-xl overflow-hidden border border-default-200"
+            style={{ aspectRatio: "2 / 1" }}
+          >
+            <Image
+              src={post.heroImage ?? DEFAULT_BLOG_HERO_IMAGE}
+              alt={`${post.title} hero image`}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 768px"
+            />
           </div>
 
           <MarkdownRenderer content={post.content} />

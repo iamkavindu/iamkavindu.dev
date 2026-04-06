@@ -1,11 +1,12 @@
 import { getSocialLinks } from "@/lib/getSocialLinks";
-import { getAboutMe, getGetInTouch, getAllBlogPosts } from "@/lib/content";
+import { getAboutMe, getGetInTouch, getAllBlogPosts, getProjects } from "@/lib/content";
 import LinkedInIcon from "@/components/icons/LinkedInIcon";
 import GitHubIcon from "@/components/icons/GitHubIcon";
 import MediumIcon from "@/components/icons/MediumIcon";
 import ProfilePicture from "@/components/ProfilePicture";
 import Header from "@/components/Header";
 import BlogCard from "@/components/BlogCard";
+import ProjectCard from "@/components/ProjectCard";
 import MarkdownSection from "@/components/MarkdownSection";
 import { Divider } from "@heroui/react";
 
@@ -14,6 +15,7 @@ export default function Home() {
   const aboutContent = getAboutMe();
   const contactContent = getGetInTouch();
   const blogPosts = getAllBlogPosts();
+  const projects = getProjects();
 
   return (
     <>
@@ -94,6 +96,24 @@ export default function Home() {
               <div className="grid gap-6">
                 {blogPosts.map((post) => (
                   <BlogCard key={post.slug} post={post} />
+                ))}
+              </div>
+            ) : (
+              <p className="text-default-500">No content available</p>
+            )}
+          </div>
+        </section>
+
+        <Divider className="max-w-4xl mx-auto" />
+
+        {/* Projects Section */}
+        <section id="projects" className="scroll-mt-20 py-16 px-4">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-3xl font-bold mb-8">Projects</h1>
+            {projects.length > 0 ? (
+              <div className="grid gap-6">
+                {projects.map((project) => (
+                  <ProjectCard key={project.slug} project={project} />
                 ))}
               </div>
             ) : (
