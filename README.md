@@ -21,13 +21,14 @@ Trailing slashes are enforced (`trailingSlash: true` in `next.config.ts`).
 
 ### Home Page Sections
 
-The home page (`app/page.tsx`) assembles four sections from separate content sources:
+The home page (`app/page.tsx`) assembles five sections from separate content sources:
 
 | Section | Source | Component |
 |---|---|---|
 | Landing | Inline JSX + `getSocialLinks()` | Social icon links, profile picture |
 | About | `content/about-me.md` | `<MarkdownSection />` |
 | Blogs | `getAllBlogPosts()` listing | `<BlogCard />` per post |
+| Projects | `getProjects()` listing | `<ProjectCard />` per project |
 | Contact | `content/get-in-touch.md` | `<MarkdownSection />` |
 
 ## Project Structure
@@ -35,7 +36,7 @@ The home page (`app/page.tsx`) assembles four sections from separate content sou
 ```
 app/
   layout.tsx            # Root layout: metadata, fonts, CSP meta tags, analytics script
-  page.tsx              # Home page (assembles landing, about, blogs, contact sections)
+  page.tsx              # Home page (assembles landing, about, blogs, projects, contact sections)
   providers.tsx         # Client-side providers: HeroUI + next-themes
   globals.css           # Tailwind v4 imports, custom colour tokens, dark mode variant
   blog/[slug]/
@@ -46,14 +47,15 @@ components/
   MarkdownRenderer.tsx  # react-markdown pipeline: GFM, syntax highlighting, Mermaid
   MarkdownSection.tsx   # Thin "use client" wrapper around MarkdownRenderer
   MermaidBlock.tsx      # Client-side Mermaid diagram renderer (re-renders on theme change)
-  BlogCard.tsx          # Blog post summary card (title, date, description)
+  BlogCard.tsx          # Blog post summary card with 2:1 hero image thumbnail, title, date, description
+  ProjectCard.tsx       # Project card with 2:1 social preview image, title, description, tags
   ProfilePicture.tsx    # Next.js Image with custom WebP loader, blur placeholder, fallback SVG
   ScrollToTop.tsx       # Floating button (appears after 300px scroll)
   ThemeToggle.tsx       # Dark / light mode switch (HeroUI Switch + next-themes)
   icons/                # Inline SVG components: GitHubIcon, LinkedInIcon, MediumIcon
 
 lib/
-  content.ts            # File-system markdown loader (gray-matter) with draft filtering
+  content.ts            # File-system markdown loader (gray-matter): blog posts, projects, static sections
   getSocialLinks.ts     # Parses social URLs from markdown; validates against a domain allowlist
   imageLoader.ts        # Custom Next.js image loader — maps src + width to pre-generated WebP path
   utils.ts              # cn() — className merge helper (clsx + tailwind-merge)
@@ -62,6 +64,7 @@ content/
   about-me.md           # About section (markdown)
   get-in-touch.md       # Contact section (markdown)
   blogs/                # Blog posts — one .md file per post
+  projects/             # Projects — one .md file per project
 
 public/
   data/social-links.md  # Social link URLs (read at build time by getSocialLinks.ts)
@@ -89,9 +92,14 @@ title: string
 date: string         # ISO 8601 — used for sorting (newest first)
 description: string
 slug: string         # URL path segment → /blog/{slug}/
+heroImage: string    # optional — path to hero image (e.g. /images/blogs/my-post.jpg)
 draft: boolean       # true = excluded from listings and static generation
 ---
 ```
+
+If `heroImage` is omitted, a default fallback image (`/default-blog-hero.png`) is used. The hero image is displayed:
+- As a 2:1 thumbnail on the left side of each `<BlogCard />` on the home page.
+- As a full-width 2:1 banner at the top of the blog post page, between the title/date header and the markdown body.
 
 Build-time flow:
 
@@ -103,6 +111,35 @@ Build-time flow:
 ### Adding a New Blog Post
 
 Create a `.md` file in `content/blogs/` with the frontmatter fields above. Set `draft: false` (or omit it) when ready to publish. The post will appear on the next build.
+
+### Projects
+
+Each file in `content/projects/` uses YAML frontmatter:
+
+```yaml
+---
+title: string
+description: string
+url: string          # project or repository URL
+image: string        # optional — explicit preview image URL (overrides auto-derived image)
+tags: string[]       # technology / topic tags shown as chips on the card
+slug: string         # unique identifier (used as React key)
+---
+```
+
+`getProjects()` in `lib/content.ts` reads all files from `content/projects/` and returns the parsed list.
+
+**GitHub social preview auto-derivation:** If `url` points to a `github.com` repository and no `image` field is set, `getGitHubSocialPreviewUrl()` in `lib/content.ts` derives the social preview URL automatically:
+
+```
+https://opengraph.githubassets.com/1/{owner}/{repo}
+```
+
+This image is served from `opengraph.githubassets.com`, which is whitelisted in `next.config.ts` via `remotePatterns` for Next.js Image optimisation. Non-GitHub URLs without an explicit `image` field render without a preview image.
+
+### Adding a New Project
+
+Create a `.md` file in `content/projects/`. For GitHub projects, only `url` is required for the preview image to appear — it is derived automatically.
 
 ### Static Content Sections
 
@@ -151,6 +188,22 @@ Output: /profilepicture-512w-q85.webp
 ```
 
 External URLs pass through unchanged.
+
+### Remote Images (GitHub Social Previews)
+
+Project cards that link to GitHub repositories display the repository's social preview image, fetched from `opengraph.githubassets.com`. Because this is a remote domain, it is declared in `next.config.ts` under `images.remotePatterns`:
+
+```ts
+remotePatterns: [
+  {
+    protocol: "https",
+    hostname: "opengraph.githubassets.com",
+    pathname: "/**",
+  },
+]
+```
+
+This allows Next.js `<Image>` to proxy and optimise these remote images at request time. All other images on the site remain locally served static files.
 
 ## Theming
 
