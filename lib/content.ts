@@ -6,7 +6,12 @@ const contentDir = path.join(process.cwd(), "content");
 const blogsDir = path.join(contentDir, "blogs");
 const projectsDir = path.join(contentDir, "projects");
 
-export const DEFAULT_BLOG_HERO_IMAGE = "/default-blog-hero.png";
+export const DEFAULT_BLOG_HERO_IMAGE = "/default-blog-hero.webp";
+
+function generatePlaceholderBlur(): string {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="2" height="1"><rect width="100%" height="100%" fill="#1a1a2e"/></svg>`;
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
+}
 
 export interface BlogPostMeta {
   title: string;
@@ -14,6 +19,7 @@ export interface BlogPostMeta {
   description: string;
   slug: string;
   heroImage?: string;
+  blurDataURL?: string;
   draft?: boolean;
 }
 
@@ -59,6 +65,7 @@ export function getAllBlogPosts(): BlogPost[] {
         description: data.description ?? "",
         slug: data.slug ?? filename.replace(/\.md$/, ""),
         heroImage: data.heroImage ?? undefined,
+        blurDataURL: generatePlaceholderBlur(),
         draft: data.draft === true,
         content,
       } satisfies BlogPost;
@@ -93,6 +100,7 @@ export function getBlogPost(slug: string): BlogPost | null {
         description: data.description ?? "",
         slug: postSlug,
         heroImage: data.heroImage ?? undefined,
+        blurDataURL: generatePlaceholderBlur(),
         draft: false,
         content,
       };

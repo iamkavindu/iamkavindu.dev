@@ -86,6 +86,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               className="object-cover"
               priority
               sizes="(max-width: 768px) 100vw, 768px"
+              placeholder="blur"
+              blurDataURL={post.blurDataURL}
             />
           </div>
 

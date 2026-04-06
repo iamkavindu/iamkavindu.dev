@@ -94,8 +94,8 @@ export default function Home() {
             <h1 className="text-3xl font-bold mb-8">Blogs</h1>
             {blogPosts.length > 0 ? (
               <div className="grid gap-6">
-                {blogPosts.map((post) => (
-                  <BlogCard key={post.slug} post={post} />
+                {blogPosts.map((post, i) => (
+                  <BlogCard key={post.slug} post={post} priority={i === 0} />
                 ))}
               </div>
             ) : (

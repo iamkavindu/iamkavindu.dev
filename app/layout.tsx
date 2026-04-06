@@ -3,8 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "./providers";
 import "highlight.js/styles/github-dark.css";
 import "./globals.css";
-import ScrollToTop from "@/components/ScrollToTop";
+import dynamic from "next/dynamic";
 import Script from "next/script";
+
+const ScrollToTop = dynamic(() => import("@/components/ScrollToTop"));
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -109,6 +111,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="preconnect" href="https://opengraph.githubassets.com" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

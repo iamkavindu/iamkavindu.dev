@@ -6,9 +6,10 @@ import { DEFAULT_BLOG_HERO_IMAGE } from "@/lib/content";
 
 interface BlogCardProps {
   post: BlogPostMeta;
+  priority?: boolean;
 }
 
-export default function BlogCard({ post }: BlogCardProps) {
+export default function BlogCard({ post, priority = false }: BlogCardProps) {
   const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -32,6 +33,9 @@ export default function BlogCard({ post }: BlogCardProps) {
                 fill
                 className="object-cover"
                 sizes="192px"
+                priority={priority}
+                placeholder="blur"
+                blurDataURL={post.blurDataURL}
               />
             </div>
             <div className="flex flex-col flex-1 min-w-0 gap-1">

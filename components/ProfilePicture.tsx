@@ -15,7 +15,6 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
   className = "w-48 h-48 md:w-64 md:h-64" 
 }) => {
   const [imageError, setImageError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <div 
@@ -26,28 +25,21 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
       itemType="http://schema.org/ImageObject"
     >
       {src && !imageError ? (
-        <>
-          {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-default-200">
-              <div className="w-8 h-8 border-4 border-default-400 border-t-default-800 rounded-full animate-spin"></div>
-            </div>
-          )}
-          <Image 
-            src={src} 
-            alt={alt} 
-            width={512}
-            height={512}
-            quality={85}
-            className={`w-full h-full object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-            onError={() => setImageError(true)}
-            onLoad={() => setIsLoading(false)}
-            priority
-            sizes="(max-width: 768px) 256px, 384px"
-            itemProp="contentUrl"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRsdHR4eIR0jIysdISMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyP/2wBDARAVFhgeFxwXFyMeHR0jIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyP/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-            placeholder="blur"
-          />
-        </>
+        <Image 
+          src={src} 
+          alt={alt} 
+          width={512}
+          height={512}
+          quality={85}
+          className="w-full h-full object-cover"
+          onError={() => setImageError(true)}
+          priority
+          fetchPriority="high"
+          sizes="(max-width: 768px) 256px, 384px"
+          itemProp="contentUrl"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQdHx4eHRsdHR4eIR0jIysdISMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyP/2wBDARAVFhgeFxwXFyMeHR0jIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyP/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+          placeholder="blur"
+        />
       ) : (
         <svg 
           className="w-24 h-24 text-default-400" 
