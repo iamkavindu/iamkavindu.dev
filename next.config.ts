@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   experimental: {
     optimizePackageImports: ["@heroui/react", "lucide-react", "highlight.js"],
+    inlineCss: true,
   },
   images: {
     loaderFile: "./lib/imageLoader.ts",

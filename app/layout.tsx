@@ -111,7 +111,6 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="preconnect" href="https://opengraph.githubassets.com" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

@@ -28,14 +28,14 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
         <Image 
           src={src} 
           alt={alt} 
-          width={512}
-          height={512}
+          width={256}
+          height={256}
           quality={85}
           className="w-full h-full object-cover"
           onError={() => setImageError(true)}
           priority
           fetchPriority="high"
-          sizes="(max-width: 768px) 256px, 384px"
+          sizes="(max-width: 768px) 192px, 256px"
           itemProp="contentUrl"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQdHx4eHRsdHR4eIR0jIysdISMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyP/2wBDARAVFhgeFxwXFyMeHR0jIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyP/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
           placeholder="blur"
