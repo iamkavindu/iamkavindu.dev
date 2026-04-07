@@ -60,6 +60,14 @@ In your `pom.xml`, include the annotation library and the Maven plugin:
       <groupId>io.github.loomforge</groupId>
       <artifactId>jtg-maven-plugin</artifactId>
       <version>0.1.0</version>
+      <executions>
+        <execution>
+          <phase>generate-sources</phase>
+          <goals>
+            <goal>generate</goal>
+          </goals>
+        </execution>
+      </executions>
     </plugin>
   </plugins>
 </build>
