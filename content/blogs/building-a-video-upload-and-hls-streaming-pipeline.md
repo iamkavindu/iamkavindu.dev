@@ -3,7 +3,7 @@ title: "Building a Video Upload and HLS Streaming Pipeline with Spring Boot, S3,
 date: "2026-06-28"
 description: "How I designed stream-app: presigned S3 uploads, SNS/SQS event fan-out, FFmpeg fMP4 HLS transcoding, and browser playback with hls.js."
 slug: "building-a-video-upload-and-hls-streaming-pipeline"
-heroImage: "/images/blogs/building-a-video-upload-and-hls-streaming-pipeline/hero.jpg"
+heroImage: "/images/blogs/stream-app/hero.png"
 draft: false
 ---
 
